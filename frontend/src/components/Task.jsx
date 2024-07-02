@@ -6,6 +6,7 @@ import TaskModal from "./TaskModal";
 import Loader from "./Loader";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import NoTodosIMG from "../../public/assets/add-task.svg";
 
 function Task({ onLogout }) {
   const [click, setClick] = useState(false);
@@ -163,8 +164,8 @@ function Task({ onLogout }) {
       </div>
       <div className="flex flex-col items-center justify-center md:mx-8">
         <div className="w-full flex items-center justify-between">
-          <div className="flex justify-center items-center gap-2 md:gap-4 mb-5 mx-4">
-            <button className="md:mb-20 my-8 bg-red-500 fill-slate-200 rounded-full p-2 hover:scale-110 transition duration-300 ease-in-out">
+          <div className="flex justify-center items-center gap-2 md:gap-4 mb-5 mx-4 md:mx-0">
+            <button className="md:mb-20 my-4 bg-red-500 fill-slate-200 rounded-full p-2 hover:scale-110 transition duration-300 ease-in-out">
               <svg
                 width={window.innerWidth > 768 ? "24" : "14"}
                 height={window.innerWidth > 768 ? "24" : "14"}
@@ -173,11 +174,11 @@ function Task({ onLogout }) {
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
               </svg>
             </button>
-            <h1 className="font-bold text-2xl md:text-3xl my-8 md:mb-20 tracking-wide md:tracking-wider whitespace-nowrap">
+            <h1 className="font-bold text-2xl md:text-3xl my-4 md:mb-20 tracking-wide md:tracking-wider whitespace-nowrap">
               Todo App
             </h1>
           </div>
-          <div className="flex justify-center items-center gap-4 mb-4 md:mb-20 mx-4">
+          <div className="flex justify-center items-center gap-4 mb-4 md:mb-20 mx-4 md:mx-0">
             <h2
               className={`${
                 fullName
@@ -212,14 +213,10 @@ function Task({ onLogout }) {
           </div>
         </div>
         <div className="flex justify-between md:justify-center items-center w-full">
-          <div className="w-full px-4 md:px-0 md:w-[750px] md:gap-[30rem] flex justify-between items-center">
-            <button
-              className="whitespace-nowrap px-4 py-2 bg-red-500 hover:bg-red-400 rounded-md transition duration-300 ease-in-out"
-              onClick={handleAddTaskClick}
-            >
-              Add Task
-            </button>
-            <div>
+          {filteredTasks.length === 0 ? (
+            ""
+          ) : (
+            <div className="w-full px-4 md:px-0 md:w-[750px] md:gap-[30rem] flex justify-end">
               <select
                 className="whitespace-nowrap bg-red-500 hover:bg-red-400 transition duration-300 ease-in-out text-white p-2 rounded-md outline-none"
                 value={filter}
@@ -230,7 +227,7 @@ function Task({ onLogout }) {
                 <option value="incomplete">Incomplete</option>
               </select>
             </div>
-          </div>
+          )}
         </div>
         <AnimatePresence>
           {click && (
@@ -248,11 +245,18 @@ function Task({ onLogout }) {
         </AnimatePresence>
         <div className="w-full px-4 flex justify-center items-center">
           {loading ? (
-            <Loader className="mt-20" />
+            <Loader className="mt-40 md:mt-20" />
           ) : filteredTasks.length === 0 ? (
-            <p className="text-gray-200 mt-6 text-center md:mt-8">
-              No tasks added yet.
-            </p>
+            <div className="mt-40 md:mt-0">
+              <img
+                src={NoTodosIMG}
+                alt="no task img"
+                className="w-[300px] h-[300px] md:w-[350px] md:h-[350px]"
+              />
+              <p className="text-gray-200 text-lg mt-6 text-center md:mt-8">
+                No tasks added yet.
+              </p>
+            </div>
           ) : (
             <TaskList
               tasks={filteredTasks}
@@ -263,6 +267,27 @@ function Task({ onLogout }) {
           )}
         </div>
       </div>
+      <button
+        className="flex items-center justify-center p-2 rounded-full bg-red-500 hover:bg-red-400 transition-all duration-200 ease-in fixed right-10 bottom-10 z-50"
+        onClick={handleAddTaskClick}
+      >
+        <svg
+          width="38"
+          height="38"
+          xmlns="http://www.w3.org/2000/svg"
+          class="ionicon"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="none"
+            stroke="#fff"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="32"
+            d="M256 112v288M400 256H112"
+          />
+        </svg>
+      </button>
     </div>
   );
 }

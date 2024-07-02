@@ -29,7 +29,7 @@ function TaskModal({
       onClick={() => setClick(false)}
     >
       <motion.div
-        className="w-full md:w-auto bg-[#181824] flex justify-evenly flex-col px-4 py-4 mx-4 gap-4 rounded-lg"
+        className="w-full md:w-auto bg-[#181824] flex justify-evenly flex-col p-5 mx-4 gap-6 rounded-lg"
         key="modalContent"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -55,7 +55,7 @@ function TaskModal({
         <div className="space-y-2">
           <h4>Status</h4>
           <select
-            className="w-full md:w-96 px-4 py-2 rounded-md bg-slate-200 text-gray-800"
+            className="w-full md:w-96 px-4 py-2 rounded-md bg-slate-200 text-gray-800 text-gray-80 outline-none focus:outline-none"
             name=""
             id=""
             value={modalFilter}

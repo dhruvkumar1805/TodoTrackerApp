@@ -52,7 +52,7 @@ function TaskList({
                         <span
                           className={
                             task.checked
-                              ? "line-through opacity-50 text-[18px] leading-none break-all"
+                              ? "line-through opacity-50 text-[18px] leading-none break-words"
                               : "text-[18px] leading-none break-all"
                           }
                         >
@@ -66,7 +66,7 @@ function TaskList({
                   </div>
                   <div className="flex justify-center items-center space-x-2">
                     <button
-                      className="hover:scale-110 transition duration-300 ease-in-out"
+                      className="hover:scale-110 pr-1 transition duration-300 ease-in-out"
                       onClick={() => handleEditTaskClick(index)}
                     >
                       <svg
@@ -87,7 +87,7 @@ function TaskList({
                       </svg>
                     </button>
                     <button
-                      className="hover:scale-110 transition duration-300 ease-in-out"
+                      className="hover:scale-110 pr-2 transition duration-300 ease-in-out"
                       onClick={() => handleRemoveTask(index)}
                     >
                       <svg
